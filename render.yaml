@@ -1,0 +1,39 @@
+services:
+  - type: web
+    name: beast-reader
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: beast-reader-db
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: beast-reader-db
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: beast-reader-db
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: beast-reader-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: beast-reader-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JPA_DDL_AUTO
+        value: update
+      - key: JPA_SHOW_SQL
+        value: false
+
+databases:
+  - name: beast-reader-db
+    plan: free
+    databaseName: bestreader_db
+    user: bestreader_user
