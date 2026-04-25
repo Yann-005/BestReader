@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Reader — Bibliothèque</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/library.css}">
+</head>
+<body class="library-page">
+
+    <!-- ── Menu contextuel (clic droit sur un livre) ── -->
+    <div class="menu-contextuel" id="menuContextuel">
+        <div class="item-menu" onclick="lireLivre(livreSelectionne)">📖 Lire</div>
+        <div class="item-menu" onclick="toggleFavori()">⭐ Favori</div>
+        <div class="item-menu" onclick="partagerLivre()">🔗 Partager</div>
+        <div class="item-menu" onclick="voirNotes()">📝 Notes</div>
+        <div class="separateur-menu"></div>
+        <div class="item-menu danger" onclick="retirerBibliotheque()">🗑️ Retirer de la bibliothèque</div>
+    </div>
+
+    <!-- ── Menu Options (hamburger) ── -->
+    <div class="menu-hamburger" id="menuHamburger">
+
+        <div class="menu-section">
+            <h4>Trier par</h4>
+            <button class="menu-item" onclick="trierPar('alphabetique'); fermerMenuHamburger();">
+                A→Z Alphabétique
+            </button>
+            <button class="menu-item" onclick="trierPar('recent'); fermerMenuHamburger();">
+                🕐 Récemment lus
+            </button>
+            <button class="menu-item" onclick="trierPar('upload'); fermerMenuHamburger();">
+                📅 Récemment ajoutés
+            </button>
+        </div>
+
+        <div class="menu-section">
+            <h4>Mes contenus</h4>
+            <button class="menu-item" onclick="changerOnglet('annotations', event); fermerMenuHamburger();">
+                🖊️ Annotations
+            </button>
+            <button class="menu-item" onclick="changerOnglet('notes', event); fermerMenuHamburger();">
+                📝 Notes
+            </button>
+        </div>
+
+        <!-- ✅ Affichage (Grille/Liste) déplacé dans Options -->
+        <div class="menu-section">
+            <h4>Affichage</h4>
+            <button class="menu-item" onclick="basculerDisposition(); fermerMenuHamburger();">
+                <span id="textDisposition">⊞ Passer en liste</span>
+            </button>
+        </div>
+
+        <!-- ✅ Déconnexion dans Options -->
+        <div class="menu-section menu-section-danger">
+            <button class="menu-item danger-item" onclick="seDeconnecter(); fermerMenuHamburger();">
+                🚪 Déconnexion
+            </button>
+        </div>
+
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         Navbar — Logo | Nav liens | Avatar + Nom
+         (Déconnexion retirée de la navbar)
+    ══════════════════════════════════════════════ -->
+    <nav class="navbar-library">
+        <div class="logo">📚 Best Reader</div>
+
+        <!-- ✅ Fix responsive : nav-liens toujours visibles -->
+        <div class="nav-liens">
+            <button class="nav-lien actif" onclick="changerOnglet('bibliotheque')">
+                📚 Bibliothèque
+            </button>
+            <button class="nav-lien" onclick="changerOnglet('recents')">
+                🕐 Récents
+            </button>
+            <button class="nav-lien" onclick="changerOnglet('favoris')">
+                ⭐ Favoris
+            </button>
+        </div>
+
+        <div class="profil">
+            <div class="avatar" id="avatarInitiale">U</div>
+            <span class="nom-utilisateur" id="nomUtilisateur"></span>
+        </div>
+    </nav>
+
+    <!-- ══════════════════════════════════════════════
+         Barre de recherche + boutons Ajouter & Options
+         (tous sur la même bande horizontale)
+    ══════════════════════════════════════════════ -->
+    <div class="barre-recherche-container">
+        <!-- Recherche à gauche -->
+        <input type="text"
+               id="barreRecherche"
+               class="barre-recherche"
+               placeholder="🔍 Chercher par titre ou auteur..."
+               onkeyup="rechercherLivres(this.value)">
+
+        <!-- ✅ Boutons à droite, dans la même bande que la recherche -->
+        <div class="actions-recherche">
+            <button class="btn-ajouter-livre"
+                    onclick="document.getElementById('inputFichier').click()">
+                + Ajouter un livre
+            </button>
+            <button class="btn-menu-hamburger" onclick="afficherMenuHamburger()">
+                ☰ Options
+            </button>
+        </div>
+
+        <!-- Input fichier caché -->
+        <input type="file"
+               id="inputFichier"
+               style="display:none"
+               accept=".pdf,.docx,.txt,.epub"
+               onchange="uploaderLivre(event)">
+    </div>
+
+    <!-- ══════════════════════════════════════════════
+         Contenu principal
+    ══════════════════════════════════════════════ -->
+    <div class="contenu-library">
+
+        <!-- Titre de l'onglet courant -->
+        <div class="barre-titre">
+            <h2 id="titreOnglet">Ma Bibliothèque</h2>
+        </div>
+
+        <!-- Grille de livres -->
+        <div class="grille-livres" id="grilleLivres"></div>
+
+        <!-- Bibliothèque vide -->
+        <div class="bibliotheque-vide" id="bibliothequeVide" style="display:none;">
+            <span>📚</span>
+            <p>Votre bibliothèque est vide.</p>
+            <button class="btn-principal"
+                    onclick="document.getElementById('inputFichier').click()">
+                + Ajouter mon premier livre
+            </button>
+        </div>
+
+    </div>
+
+    <script th:src="@{/js/library.js}"></script>
+    <script>
+        // ── Menu hamburger ──
+        function afficherMenuHamburger() {
+            document.getElementById('menuHamburger').classList.toggle('visible');
+        }
+
+        function fermerMenuHamburger() {
+            document.getElementById('menuHamburger').classList.remove('visible');
+        }
+
+        // Fermer les menus en cliquant en dehors
+        document.addEventListener('click', function(e) {
+            const menuCtx    = document.getElementById('menuContextuel');
+            const menuHamb   = document.getElementById('menuHamburger');
+            const btnHamb    = e.target.closest('.btn-menu-hamburger');
+
+            if (menuCtx.classList.contains('visible') &&
+                !menuCtx.contains(e.target) &&
+                !e.target.closest('.action-btn')) {
+                menuCtx.classList.remove('visible');
+            }
+
+            if (menuHamb.classList.contains('visible') &&
+                !menuHamb.contains(e.target) &&
+                !btnHamb) {
+                menuHamb.classList.remove('visible');
+            }
+        });
+
+        // ── Sync texte du bouton de disposition ──
+        const _basculerOriginal = basculerDisposition;
+        async function basculerDisposition() {
+            await _basculerOriginal();
+            const txt = document.getElementById('textDisposition');
+            if (txt) {
+                txt.textContent = dispositionActuelle === 'grille'
+                    ? '📋 Passer en liste'
+                    : '⊞ Passer en grille';
+            }
+        }
+    </script>
+</body>
+</html>

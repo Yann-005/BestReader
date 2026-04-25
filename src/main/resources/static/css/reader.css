@@ -1,0 +1,796 @@
+/* ══════════════════════════════════════════════════════════
+   reader.css — BestReader
+   Responsive : mobile-first, rien ne déborde
+══════════════════════════════════════════════════════════ */
+
+/* ── Reset & base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body.reader-page {
+    background: var(--fond-secondaire);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;   /* jamais de scroll horizontal */
+}
+
+/* ══════════════════════════════════════════════════════════
+   NAVBAR
+══════════════════════════════════════════════════════════ */
+.navbar-lecteur {
+    background: var(--gradient);
+    color: white;
+    padding: 0 16px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 300;
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+}
+
+/* Titre */
+.navbar-titre {
+    flex: 1;
+    min-width: 0;           /* permet le text-overflow */
+}
+
+.titre-livre {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chapitre {
+    font-size: 0.72rem;
+    opacity: 0.75;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Groupe de boutons partagé */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.btn-hamburger {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.btn-hamburger:hover { background: rgba(255,255,255,0.28); }
+
+/* Bouton Quitter (✕) */
+.btn-quitter {
+    background: rgba(192,57,43,0.7);
+    border: none;
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.btn-quitter:hover { background: var(--danger); }
+
+/* ══════════════════════════════════════════════════════════
+   MENU HAMBURGER MOBILE
+══════════════════════════════════════════════════════════ */
+.menu-hamburger-reader {
+    position: fixed;
+    top: 56px;              /* juste sous la navbar */
+    right: 0;
+    width: 240px;
+    background: white;
+    border-radius: 0 0 0 14px;
+    box-shadow: -4px 6px 28px rgba(0,0,0,0.18);
+    z-index: 400;
+    display: none;
+    overflow: hidden;
+    border-left: 1px solid var(--bordure);
+    border-bottom: 1px solid var(--bordure);
+    animation: slideDown 0.18s ease;
+}
+
+.menu-hamburger-reader.ouvert { display: block; }
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.hamburger-section {
+    padding: 8px;
+}
+
+.hamburger-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: var(--texte);
+    cursor: pointer;
+    transition: background 0.18s;
+    font-weight: 600;
+}
+.hamburger-item:hover { background: var(--ivoire); color: var(--brun); }
+
+/* ══════════════════════════════════════════════════════════
+   BARRE DE PROGRESSION
+══════════════════════════════════════════════════════════ */
+.barre-progression {
+    height: 4px;
+    background: var(--bordure);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.barre-progression .progression {
+    height: 100%;
+    background: var(--gradient);
+    transition: width 0.4s ease;
+}
+
+.barre-progression .texte-progression {
+    position: absolute;
+    right: 10px;
+    top: 6px;
+    font-size: 0.7rem;
+    color: var(--texte-secondaire);
+    white-space: nowrap;
+}
+
+/* ══════════════════════════════════════════════════════════
+   ZONE DE LECTURE
+══════════════════════════════════════════════════════════ */
+.zone-lecture {
+    flex: 1;
+    display: flex;
+    position: relative;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.contenu-lecture {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 24px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Page document (conteneur universel) ─────────────────── */
+.page-document {
+    width: 100%;
+    max-width: 860px;
+    line-height: 1.8;
+}
+
+/* PDF */
+.page-document.pdf-page {
+    display: flex;
+    justify-content: center;
+    background: transparent;
+    padding: 0;
+    max-width: 100%;
+}
+
+.pdf-wrapper {
+    position: relative;
+    margin: 0 auto;
+    box-shadow: 0 8px 32px rgba(0,0,0,.2);
+    background: white;
+    max-width: 100%;
+}
+
+.pdf-wrapper canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    transition: filter .25s ease;
+}
+
+.pdf-text-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    overflow: hidden;
+    line-height: 1;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.pdf-text-item {
+    position: absolute;
+    color: transparent;
+    white-space: pre;
+    cursor: text;
+    user-select: text;
+}
+
+.pdf-text-item::selection,
+.pdf-text-layer ::selection {
+    background: rgba(255,224,102,.55);
+    color: transparent;
+}
+
+/* DOCX */
+.page-document.docx-page {
+    max-width: 100%;
+    padding: 0;
+    background: transparent;
+    overflow: visible;
+}
+
+#docxHost {
+    transform: scale(var(--reader-zoom, 1));
+    transform-origin: top center;
+    transition: transform .2s ease, filter .2s ease;
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.page-document.docx-page .docx-wrapper {
+    background: transparent !important;
+    padding: 12px 0 !important;
+}
+
+.page-document.docx-page section.docx {
+    margin: 0 auto 20px auto !important;
+    box-shadow: 0 8px 32px rgba(0,0,0,.15);
+    max-width: 100% !important;
+}
+
+.docx-fallback {
+    max-width: 860px;
+    margin: 0 auto;
+    line-height: 1.8;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    transform-origin: top center;
+}
+
+.docx-fallback img { max-width: 100%; height: auto; display: block; margin: 16px auto; }
+
+/* EPUB */
+.page-document.epub-page {
+    max-width: 100%;
+    height: calc(100dvh - 140px); /* dvh = dynamic viewport height, tient compte de la barre nav mobile */
+    background: white;
+    padding: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+}
+
+#epubViewer { width: 100%; height: 100%; }
+
+.epub-fallback {
+    max-width: 860px;
+    margin: 0 auto;
+    line-height: 1.8;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+}
+
+.epub-fallback img { max-width: 100%; height: auto; display: block; margin: 16px auto; }
+
+/* TXT */
+.page-document.txt-page {
+    max-width: 860px;
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    min-height: calc(100dvh - 200px);
+}
+
+.txt-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font: inherit;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* Loader */
+.loader {
+    padding: 40px 20px;
+    color: var(--texte-secondaire);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════════════════════════
+   MENU PARAMÈTRES (Thème / Taille / Marqueur)
+══════════════════════════════════════════════════════════ */
+.menu-deroulant {
+    position: fixed;
+    top: 60px;
+    right: 16px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    padding: 18px;
+    width: 268px;
+    max-width: calc(100vw - 32px);  
+    z-index: 350;
+    display: none;
+    border: 1px solid var(--bordure);
+    animation: apparaitre 0.15s ease;
+}
+
+.menu-deroulant.ouvert { display: block; }
+
+.menu-deroulant .option {
+    margin-bottom: 18px;
+}
+.menu-deroulant .option:last-child { margin-bottom: 0; }
+
+.menu-deroulant .option label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--texte-secondaire);
+    margin-bottom: 10px;
+}
+
+/* Thèmes */
+.themes { display: flex; gap: 10px; }
+
+.theme-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.theme-btn:hover    { transform: scale(1.1); }
+.theme-btn.actif    { border-color: var(--brun); transform: scale(1.15); box-shadow: 0 0 0 2px rgba(139,69,19,0.2); }
+.theme-btn.clair    { background: #FFFFFF; border-color: var(--bordure); }
+.theme-btn.sepia    { background: #F4ECD8; }
+.theme-btn.sombre   { background: #2C2C2C; }
+
+/* Taille police */
+.taille-police { display: flex; align-items: center; gap: 10px; }
+
+.taille-police button {
+    width: 34px;
+    height: 34px;
+    border-radius: 7px;
+    border: 2px solid var(--bordure);
+    background: var(--ivoire);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--texte);
+    transition: all 0.2s;
+    cursor: pointer;
+}
+.taille-police button:hover { background: var(--brun); color: white; border-color: var(--brun); }
+
+.taille-police span {
+    font-size: 0.85rem;
+    color: var(--texte-secondaire);
+    min-width: 46px;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Couleurs marqueur */
+.couleurs-marqueur { display: flex; gap: 7px; flex-wrap: wrap; }
+
+.couleur-btn {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.couleur-btn:hover  { transform: scale(1.15); }
+.couleur-btn.actif  { border-color: var(--chocolat); transform: scale(1.2); box-shadow: 0 2px 6px rgba(0,0,0,.2); }
+
+/* ══════════════════════════════════════════════════════════
+   NAVIGATION PAGES
+══════════════════════════════════════════════════════════ */
+.navigation-pages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    background: white;
+    border-top: 1px solid var(--bordure);
+    gap: 12px;
+    flex-shrink: 0;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.04);
+}
+
+.btn-page {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+.btn-page:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(62,31,0,0.28);
+}
+.btn-page:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+.info-page {
+    font-size: 0.82rem;
+    color: var(--texte-secondaire);
+    min-width: 100px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════════
+   POPUP DICTIONNAIRE
+══════════════════════════════════════════════════════════ */
+.popup-dictionnaire {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.22);
+    padding: 24px 26px;
+    width: min(380px, calc(100vw - 24px));  /* ne dépasse jamais sur mobile */
+    z-index: 1002;
+    display: none;
+}
+
+.popup-dictionnaire.visible {
+    display: block;
+    animation: apparaitre 0.18s ease;
+}
+
+@keyframes apparaitre {
+    from { opacity: 0; transform: translate(-50%, -47%); }
+    to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+.popup-dictionnaire .entete {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.popup-dictionnaire .mot {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--chocolat);
+    font-weight: 700;
+}
+
+.popup-dictionnaire .langue {
+    font-size: 0.7rem;
+    background: var(--ivoire);
+    color: var(--brun);
+    padding: 3px 8px;
+    border-radius: 20px;
+    border: 1px solid var(--bordure);
+    margin-top: 4px;
+}
+
+.popup-dictionnaire .btn-fermer {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: var(--texte-secondaire);
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.2s;
+}
+.popup-dictionnaire .btn-fermer:hover { color: var(--danger); }
+
+.popup-dictionnaire .definition-courte {
+    background: var(--ivoire);
+    border-left: 3px solid var(--brun);
+    padding: 9px 13px;
+    border-radius: 0 8px 8px 0;
+    font-weight: 700;
+    color: var(--brun);
+    margin-bottom: 11px;
+    font-size: 0.88rem;
+}
+
+.popup-dictionnaire .definition {
+    color: var(--texte);
+    font-size: 0.87rem;
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+.popup-dictionnaire .synonymes h4 {
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--texte-secondaire);
+    margin-bottom: 8px;
+}
+
+.popup-dictionnaire .liste-synonymes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.popup-dictionnaire .synonyme {
+    background: var(--fond-secondaire);
+    border: 1px solid var(--bordure);
+    color: var(--brun);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.popup-dictionnaire .synonyme:hover { background: var(--brun); color: white; border-color: var(--brun); }
+
+/* ══════════════════════════════════════════════════════════
+   MENU SÉLECTION TEXTE
+══════════════════════════════════════════════════════════ */
+.menu-selection {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.22);
+    padding: 22px;
+    z-index: 1001;
+    text-align: center;
+    width: min(300px, calc(100vw - 24px));
+}
+
+.menu-selection-title  { margin-bottom: 10px; font-weight: bold; color: #3E1F00; font-size: 0.95rem; }
+.menu-selection-text   { font-size: .78rem; color: #7D5A4F; margin-bottom: 12px; font-style: italic; }
+
+.menu-selection-actions {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.menu-selection-actions button {
+    padding: 9px 16px;
+    background: linear-gradient(135deg,#3E1F00,#8B4513);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+.menu-selection-actions button:last-child { background: #f0f0f0; color: #333; }
+.menu-selection-actions button:hover      { transform: translateY(-1px); }
+
+/* ══════════════════════════════════════════════════════════
+   OVERLAY
+══════════════════════════════════════════════════════════ */
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.3);
+    z-index: 290;       /* sous les menus (300+) mais au-dessus du contenu */
+    display: none;
+}
+.overlay.visible { display: block; }
+
+/* ══════════════════════════════════════════════════════════
+   THÈMES
+══════════════════════════════════════════════════════════ */
+/* Sépia */
+body.theme-sepia { background: #EDE0C8; }
+
+body.theme-sepia .page-document.txt-page,
+body.theme-sepia .docx-fallback,
+body.theme-sepia .epub-fallback {
+    background: #f4ecd8;
+    color: #3E1F00;
+}
+
+body.theme-sepia .navigation-pages { background: #EDE0C8; border-color: #D4C4A8; }
+body.theme-sepia .menu-deroulant   { background: #FDF5E6; }
+
+/* Sombre */
+body.theme-sombre { background: #1A1A1A; }
+
+body.theme-sombre .page-document.txt-page,
+body.theme-sombre .docx-fallback,
+body.theme-sombre .epub-fallback {
+    background: #1f1f1f;
+    color: #eeeeee;
+}
+
+body.theme-sombre .navigation-pages { background: #242424; border-color: #3A3A3A; color: #ccc; }
+body.theme-sombre .info-page         { color: #aaa; }
+body.theme-sombre .menu-deroulant    { background: #2C2C2C; border-color: #444; color: #ddd; }
+body.theme-sombre .menu-deroulant .option label { color: #999; }
+body.theme-sombre .taille-police button { background: #3A3A3A; border-color: #555; color: #ddd; }
+body.theme-sombre .hamburger-item    { color: #ddd; }
+body.theme-sombre .hamburger-item:hover { background: #3A3A3A; }
+body.theme-sombre .menu-hamburger-reader { background: #2C2C2C; border-color: #444; }
+
+/* DOCX/EPUB thèmes via filtre CSS */
+#docxHost[data-theme="sepia"]  { filter: sepia(.45) brightness(1.03) contrast(.95); }
+#docxHost[data-theme="sombre"] { filter: invert(.88) hue-rotate(180deg) brightness(1.05) contrast(.9); }
+
+/* ══════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════ */
+
+/* ── Tablette (≤ 900px) ──────────────────────────────────── */
+@media (max-width: 900px) {
+    .btn-navbar { padding: 6px 10px; font-size: 0.78rem; }
+}
+
+/* ── Mobile (≤ 640px) : bascule vers hamburger ───────────── */
+@media (max-width: 640px) {
+    .actions-desktop { display: none; }   /* cache les 3 boutons texte */
+    .actions-mobile  { display: flex; }   /* affiche hamburger + ✕    */
+
+    .navbar-lecteur  { height: 52px; padding: 0 12px; }
+    .titre-livre     { font-size: 0.88rem; }
+
+    .contenu-lecture { padding: 12px 8px; }
+
+    /* PDF : pleine largeur */
+    .page-document.pdf-page { max-width: 100%; }
+    .pdf-wrapper canvas { max-width: 100%; }
+
+    /* TXT / DOCX fallback */
+    .page-document.txt-page,
+    .docx-fallback,
+    .epub-fallback {
+        padding: 20px 16px;
+        border-radius: 8px;
+    }
+
+    /* EPUB : hauteur ajustée sans la nav mobile du browser */
+    .page-document.epub-page { height: calc(100dvh - 120px); }
+
+    /* Navigation */
+    .navigation-pages { padding: 8px 10px; gap: 8px; }
+    .btn-page         { padding: 8px 14px; font-size: 0.8rem; }
+    .info-page        { min-width: 70px; font-size: 0.78rem; }
+
+    /* Menu paramètres positionné depuis la gauche sur mobile */
+    .menu-deroulant   { right: 8px; top: 4px; width: calc(100vw - 16px); max-width: 320px; }
+
+    /* Barre progression texte masqué */
+    .texte-progression { display: none; }
+}
+
+/* ── Très petit (≤ 380px) ────────────────────────────────── */
+@media (max-width: 380px) {
+    .titre-livre  { font-size: 0.8rem; }
+    .btn-page     { padding: 7px 10px; font-size: 0.75rem; }
+    .info-page    { min-width: 60px; }
+}
+
+/* Correctifs robustes lecteur */
+.pdf-highlight-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    overflow: hidden;
+}
+.pdf-selection-highlight {
+    position: absolute;
+    opacity: .45;
+    border-radius: 3px;
+    mix-blend-mode: multiply;
+}
+.pdf-text-layer { z-index: 2; }
+.selection-highlight { border-radius: 3px; padding: 0 .05em; }
+#docxHost section.docx { display: none; }
+#docxHost section.docx:first-child { display: block; }
+.page-flow {
+    min-height: calc(100dvh - 210px);
+    max-height: calc(100dvh - 190px);
+    overflow-y: auto;
+}
+#epubViewer iframe { background: transparent !important; }
+body.theme-sombre .popup-dictionnaire,
+body.theme-sombre .menu-selection { background: #2C2C2C; color: #eee; }
+body.theme-sombre .popup-dictionnaire .definition { color: #eee; }
+body.theme-sombre .popup-dictionnaire .mot { color: #f5d6a0; }
+
+/* Pagination TXT / DOCX : chaque page est un vrai bloc séparé, pas une longue page */
+.flow-reader-page {
+    width: min(900px, 96%);
+    min-height: 72vh;
+    margin: 24px auto;
+    padding: 42px 48px;
+    background: var(--reader-page-bg, #ffffff);
+    color: var(--reader-text-color, #222222);
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+    line-height: 1.75;
+    cursor: pointer;
+}
+
+.txt-flow-page .txt-content {
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: inherit;
+    line-height: 1.75;
+    margin: 0;
+}
+
+.docx-paged-host .flow-reader-page img,
+.flow-reader-page img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 14px auto;
+}
+
+.theme-sombre .flow-reader-page,
+body.theme-sombre .flow-reader-page {
+    --reader-page-bg: #1f2937;
+    --reader-text-color: #f3f4f6;
+}
+
+.theme-sepia .flow-reader-page,
+body.theme-sepia .flow-reader-page {
+    --reader-page-bg: #f4ecd8;
+    --reader-text-color: #3e1f00;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Reader — Lecture</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/reader.css}">
+
+    <script th:src="@{/js/pdf/pdf.min.js}"></script>
+    <script th:src="@{/js/vendor/jszip.min.js}"></script>
+    <script th:src="@{/js/vendor/docx-preview.min.js}"></script>
+    <script th:src="@{/js/vendor/epub.min.js}"></script>
+    <script th:src="@{/js/dictionary-fr.js(v='dict-v6')}"></script>
+</head>
+<body class="reader-page">
+
+    <!-- Overlay — ferme TOUT en cliquant n'importe où -->
+    <div class="overlay" id="overlay" onclick="fermerTout()"></div>
+
+    <!-- ══════════════════════════════════════════
+         Navbar lecteur
+    ══════════════════════════════════════════ -->
+    <nav class="navbar-lecteur">
+
+        <!-- Titre du livre -->
+        <div class="navbar-titre">
+            <div class="titre-livre" id="titreLivre">Chargement...</div>
+            <div class="chapitre" id="chapitreActuel"></div>
+        </div>
+
+     
+        <!-- Actions mobile : hamburger + quitter -->
+        <div class="actions actions-mobile">
+            <button class="btn-hamburger" id="btnHamburger" onclick="toggleHamburger(event)" title="Menu">☰</button>
+            <button class="btn-quitter" onclick="window.location.href='/Library'" title="Quitter">✕</button>
+        </div>
+
+    </nav>
+
+    <!-- ══════════════════════════════════════════
+         Menu hamburger mobile
+         (les 3 boutons + paramètres condensés)
+    ══════════════════════════════════════════ -->
+    <div class="menu-hamburger-reader" id="menuHamburgerReader">
+
+        <div class="hamburger-section">
+            <button class="hamburger-item" onclick="toggleMenu(event); fermerHamburger();">
+                ⚙️ Paramètres
+            </button>
+            <button class="hamburger-item" onclick="ouvrirAnnotations()">
+                🖊️ Annotations
+            </button>
+            <button class="hamburger-item" onclick="ouvrirNotes()">
+                📝 Notes
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Barre de progression -->
+    <div class="barre-progression">
+        <div class="progression" id="barreProgression" style="width: 0%"></div>
+        <div class="texte-progression" id="texteProgression">0%</div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         Zone de lecture
+    ══════════════════════════════════════════ -->
+    <div class="zone-lecture">
+        <div class="contenu-lecture" id="contenuLecture">
+            <div class="page-document" id="pageDocument"></div>
+        </div>
+
+        <!-- Menu paramètres (Thème / Taille / Marqueur) -->
+        <div class="menu-deroulant" id="menuDeroulant">
+
+            <div class="option">
+                <label>Thème</label>
+                <div class="themes">
+                    <button class="theme-btn clair actif" onclick="changerTheme('clair', event)" title="Clair"></button>
+                    <button class="theme-btn sepia"       onclick="changerTheme('sepia', event)" title="Sépia"></button>
+                    <button class="theme-btn sombre"      onclick="changerTheme('sombre', event)" title="Sombre"></button>
+                </div>
+            </div>
+
+            <div class="option">
+                <label>Taille du texte</label>
+                <div class="taille-police">
+                    <button onclick="changerTaille(-1)">A−</button>
+                    <span id="taillePoliceTxt">16px</span>
+                    <button onclick="changerTaille(1)">A+</button>
+                </div>
+            </div>
+
+            <div class="option">
+                <label>Couleur du marqueur</label>
+                <div class="couleurs-marqueur">
+                    <button class="couleur-btn actif" style="background:#FFE066;" onclick="changerCouleur('YELLOW', event)" title="Jaune"></button>
+                    <button class="couleur-btn"       style="background:#85E89D;" onclick="changerCouleur('GREEN', event)"  title="Vert"></button>
+                    <button class="couleur-btn"       style="background:#79B8FF;" onclick="changerCouleur('BLUE', event)"   title="Bleu"></button>
+                    <button class="couleur-btn"       style="background:#F9A8D4;" onclick="changerCouleur('PINK', event)"   title="Rose"></button>
+                    <button class="couleur-btn"       style="background:#FDB462;" onclick="changerCouleur('ORANGE', event)" title="Orange"></button>
+                    <button class="couleur-btn"       style="background:#de1313b7;" onclick="changerCouleur('RED', event)"  title="Rouge"></button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         Navigation pages
+    ══════════════════════════════════════════ -->
+    <div class="navigation-pages">
+        <button class="btn-page" id="btnPrecedent" onclick="changerPage(-1)"> ← </button>
+        <div class="info-page" id="infoPage">Page 1</div>
+        <button class="btn-page" id="btnSuivant"   onclick="changerPage(1)"> → </button>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         Popup Dictionnaire
+    ══════════════════════════════════════════ -->
+    <div class="popup-dictionnaire" id="popupDictionnaire">
+        <div class="entete">
+            <div>
+                <div class="mot"    id="dicMot"></div>
+                <div class="langue" id="dicLangue">fr</div>
+            </div>
+            <button class="btn-fermer" onclick="fermerDictionnaire()">✕</button>
+        </div>
+        <div class="definition-courte" id="dicDefinitionCourte"></div>
+        <div class="definition"        id="dicDefinition"></div>
+        <div class="synonymes">
+            <h4>Synonymes</h4>
+            <div class="liste-synonymes" id="dicSynonymes"></div>
+        </div>
+    </div>
+
+    <script th:src="@{/js/reader.js(v='dict-fix-v6')}"></script>
+    <script>
+        // ── Menu hamburger mobile ──────────────────────────
+        function toggleHamburger(event) {
+            if (event) event.stopPropagation();
+            const menu = document.getElementById('menuHamburgerReader');
+            const ouvert = menu.classList.toggle('ouvert');
+            // Fermer paramètres si on ouvre hamburger
+            if (ouvert) {
+                document.getElementById('menuDeroulant').classList.remove('ouvert');
+                document.getElementById('overlay').classList.add('visible');
+            } else {
+                document.getElementById('overlay').classList.remove('visible');
+            }
+        }
+
+        function fermerHamburger() {
+            document.getElementById('menuHamburgerReader').classList.remove('ouvert');
+            document.getElementById('overlay').classList.remove('visible');
+        }
+
+        // Étendre fermerTout pour inclure le hamburger
+        const _fermerToutOriginal = fermerTout;
+        fermerTout = function() {
+            _fermerToutOriginal();
+            fermerHamburger();
+        };
+    </script>
+</body>
+</html>

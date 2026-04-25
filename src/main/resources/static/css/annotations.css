@@ -1,0 +1,327 @@
+/* ══════════════════════════════════════════════
+   annotations.css — BestReader
+   Palette cohérente avec notes.css / style.css
+══════════════════════════════════════════════ */
+
+body.annotations-page {
+    background: var(--fond-secondaire);
+    min-height: 100vh;
+}
+
+/* ── Navbar ────────────────────────────────────────────────── */
+.navbar-annotations {
+    background: var(--gradient);
+    color: white;
+    padding: 0 30px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-gauche {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+}
+
+.navbar-gauche h1 {
+    font-size: 1.2rem;
+    color: white;
+    font-family: 'Playfair Display', serif;
+    white-space: nowrap;
+}
+
+.btn-retour {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-retour:hover {
+    background: rgba(255,255,255,0.28);
+    transform: translateX(-2px);
+}
+
+/* ── Filtres dans la navbar ────────────────────────────────── */
+.filtres-navbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.filtre-btn {
+    padding: 6px 14px;
+    border: 2px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.25s;
+}
+
+.filtre-btn:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: white;
+}
+
+.filtre-btn.actif {
+    background: white;
+    color: var(--chocolat);
+    border-color: white;
+    font-weight: 700;
+}
+
+/* Pastilles couleur (sans texte, juste la couleur) */
+.filtre-btn.jaune  { background: #FFE066; border-color: #FFE066; color: #3E1F00; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.filtre-btn.vert   { background: #85E89D; border-color: #85E89D; color: #1a4a2a; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.filtre-btn.bleu   { background: #79B8FF; border-color: #79B8FF; color: #0a2a4a; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.filtre-btn.rose   { background: #F9A8D4; border-color: #F9A8D4; color: #4a1a30; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.filtre-btn.orange { background: #FDB462; border-color: #FDB462; color: #3E1F00; width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+.filtre-btn.rouge  { background: #e05252; border-color: #e05252; color: white;   width: 32px; height: 32px; padding: 0; border-radius: 50%; }
+
+.filtre-btn.jaune.actif,
+.filtre-btn.vert.actif,
+.filtre-btn.bleu.actif,
+.filtre-btn.rose.actif,
+.filtre-btn.orange.actif,
+.filtre-btn.rouge.actif {
+    transform: scale(1.2);
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.5);
+}
+
+/* ── Contenu principal ─────────────────────────────────────── */
+.contenu-annotations {
+    max-width: 860px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ── Résumé ────────────────────────────────────────────────── */
+.resume-annotations {
+    margin-bottom: 20px;
+    font-size: 0.88rem;
+    color: var(--texte-secondaire);
+    font-weight: 600;
+}
+
+/* ── Liste ─────────────────────────────────────────────────── */
+.liste-annotations {
+    display: grid;
+    gap: 16px;
+}
+
+/* ── Carte annotation — même gabarit que .carte-note ──────── */
+.carte-annotation {
+    background: white;
+    border-radius: var(--rayon-grand);
+    padding: 22px 24px;
+    box-shadow: var(--ombre);
+    border-left: 5px solid var(--brun);
+    transition: all 0.3s;
+    position: relative;
+}
+
+.carte-annotation:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(62, 31, 0, 0.14);
+}
+
+/* Couleurs de la barre latérale selon la couleur d'annotation */
+.carte-annotation.YELLOW { border-left-color: #F0C800; }
+.carte-annotation.GREEN  { border-left-color: #4CAF72; }
+.carte-annotation.BLUE   { border-left-color: #4A90D9; }
+.carte-annotation.PINK   { border-left-color: #E87DB0; }
+.carte-annotation.ORANGE { border-left-color: #E8872A; }
+.carte-annotation.RED    { border-left-color: #C0392B; }
+.carte-annotation.PURPLE { border-left-color: #8A63C4; }
+.carte-annotation.BROWN  { border-left-color: #A0522D; }
+
+/* En-tête de la carte */
+.entete-annotation {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    gap: 12px;
+}
+
+.badge-couleur {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-livre-annotation {
+    flex: 1;
+}
+
+.titre-livre-annotation {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--chocolat);
+    font-weight: 700;
+}
+
+.meta-annotation {
+    font-size: 0.78rem;
+    color: var(--texte-secondaire);
+    margin-top: 3px;
+}
+
+/* Texte surligné */
+.texte-annotation {
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--texte);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding: 10px 16px;
+    background: var(--fond-secondaire);
+    border-radius: 8px;
+    position: relative;
+}
+
+.texte-annotation::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--bordure);
+    position: absolute;
+    top: -4px;
+    left: 8px;
+    line-height: 1;
+}
+
+.texte-annotation::after {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--bordure);
+    position: absolute;
+    bottom: -12px;
+    right: 8px;
+    line-height: 1;
+}
+
+/* Actions de la carte */
+.actions-annotation {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.btn-aller-livre {
+    padding: 7px 14px;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.btn-aller-livre:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(62,31,0,0.25);
+}
+
+.btn-supprimer-annotation {
+    padding: 7px 14px;
+    background: none;
+    color: var(--danger);
+    border: 1px solid var(--danger);
+    border-radius: 7px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.btn-supprimer-annotation:hover {
+    background: #FFF0F0;
+    transform: translateY(-1px);
+}
+
+/* ── État vide — même style que .aucune-note ───────────────── */
+.aucune-annotation {
+    text-align: center;
+    padding: 70px 20px;
+    color: var(--texte-secondaire);
+}
+
+.aucune-annotation span {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.aucune-annotation p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+}
+
+.aucune-annotation .sous-texte {
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    opacity: 0.75;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .navbar-annotations {
+        padding: 0 15px;
+        height: auto;
+        min-height: 65px;
+        flex-wrap: wrap;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        gap: 10px;
+    }
+
+    .navbar-gauche h1 {
+        font-size: 1rem;
+    }
+
+    .filtres-navbar {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 6px;
+    }
+
+    .contenu-annotations {
+        padding: 0 12px;
+        margin: 16px auto;
+    }
+
+    .carte-annotation {
+        padding: 16px;
+    }
+
+    .actions-annotation {
+        gap: 8px;
+    }
+}

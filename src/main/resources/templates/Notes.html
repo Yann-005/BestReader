@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Reader — Mes Notes</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/notes.css}">
+</head>
+<body class="notes-page">
+
+    <!-- Navbar -->
+    <nav class="navbar-notes">
+        <div class="navbar-gauche">
+            <button class="btn-retour"
+                    onclick="history.back()">Retour</button>
+            <h1>Mes Notes</h1>
+        </div>
+        <button class="btn-principal" onclick="ouvrirFormulaire()">
+            + Nouvelle note
+        </button>
+    </nav>
+
+    <!-- Contenu principal -->
+    <div class="contenu-notes">
+
+        <!-- Formulaire nouvelle note -->
+        <div class="formulaire-note" id="formulaireNote" style="display:none;">
+            <h2 id="titreFormulaire">Nouvelle note</h2>
+            <input type="hidden" id="noteId">
+            <div class="champ-formulaire">
+                <label>Titre</label>
+                <input type="text" id="noteTitre"
+                       placeholder="Titre de la note">
+            </div>
+            <div class="champ-formulaire">
+                <label>Contenu</label>
+                <textarea id="noteContenu" rows="10"
+                          placeholder="Écrivez votre note ici..."></textarea>
+            </div>
+            <div class="actions-formulaire">
+                <button class="btn-secondaire"
+                        onclick="fermerFormulaire()">Annuler</button>
+                <button class="btn-principal"
+                        onclick="sauvegarderNote()">Sauvegarder</button>
+            </div>
+        </div>
+
+        <!-- Liste des notes -->
+        <div class="liste-notes" id="listeNotes">
+            <!-- Les notes seront chargées ici -->
+        </div>
+
+        <!-- Message si aucune note -->
+        <div class="aucune-note" id="aucuneNote" style="display:none;">
+            <span>📝</span>
+            <p>Vous n'avez pas encore de notes.</p>
+            <button class="btn-principal" onclick="ouvrirFormulaire()">
+                Créer ma première note
+            </button>
+        </div>
+
+    </div>
+
+    <script th:src="@{/js/notes.js}"></script>
+</body>
+</html>

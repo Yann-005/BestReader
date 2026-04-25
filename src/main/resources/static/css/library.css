@@ -1,0 +1,596 @@
+/* ══════════════════════════════════════════════
+   library.css — BestReader
+══════════════════════════════════════════════ */
+
+body.library-page {
+    background: var(--fond-secondaire);
+    min-height: 100vh;
+}
+
+/* ══════════════════════════════════════════════
+   Navbar bibliothèque
+══════════════════════════════════════════════ */
+.navbar-library {
+    background: var(--gradient);
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    gap: 12px;
+}
+
+.navbar-library .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* ✅ Nav-liens : toujours visibles, même sur petit écran */
+.navbar-library .nav-liens {
+    display: flex;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.navbar-library .nav-lien {
+    color: rgba(255,255,255,0.8);
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    background: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+}
+
+.navbar-library .nav-lien:hover,
+.navbar-library .nav-lien.actif {
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+/* Profil — avatar + nom uniquement (déconnexion dans Options) */
+.navbar-library .profil {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    flex-shrink: 0;
+}
+
+.navbar-library .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.88rem;
+    flex-shrink: 0;
+}
+
+.navbar-library .nom-utilisateur {
+    font-size: 0.88rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+}
+
+/* ══════════════════════════════════════════════
+   Barre de recherche + boutons (même ligne)
+══════════════════════════════════════════════ */
+.barre-recherche-container {
+    padding: 12px 24px;
+    background: white;
+    border-bottom: 1px solid var(--bordure);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.barre-recherche {
+    flex: 1;
+    min-width: 160px;
+    max-width: 500px;
+    padding: 9px 16px;
+    border: 2px solid var(--bordure);
+    border-radius: 22px;
+    font-size: 0.92rem;
+    font-family: inherit;
+    transition: border-color 0.3s;
+    background: var(--fond-secondaire);
+}
+
+.barre-recherche:focus {
+    outline: none;
+    border-color: var(--chocolat);
+    background: white;
+}
+
+/* ✅ Groupe boutons à droite de la recherche */
+.actions-recherche {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* Bouton Ajouter un livre */
+.btn-ajouter-livre {
+    padding: 9px 18px;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+}
+
+.btn-ajouter-livre:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(62,31,0,0.3);
+}
+
+/* Bouton Options (hamburger) */
+.btn-menu-hamburger {
+    padding: 9px 16px;
+    background: var(--chocolat);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s;
+    white-space: nowrap;
+}
+
+.btn-menu-hamburger:hover {
+    background: var(--brun);
+    transform: translateY(-1px);
+}
+
+/* ══════════════════════════════════════════════
+   Menu Options (dropdown)
+══════════════════════════════════════════════ */
+.menu-hamburger {
+    position: fixed;
+    top: 74px;          /* sous la navbar (60px) + barre recherche (env. 14px) */
+    right: 24px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    z-index: 999;
+    min-width: 240px;
+    display: none;
+    border: 1px solid var(--bordure);
+    overflow: hidden;
+    animation: slideIn 0.2s ease;
+}
+
+.menu-hamburger.visible {
+    display: block;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-section {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--bordure);
+}
+
+.menu-section:last-child {
+    border-bottom: none;
+}
+
+.menu-section h4 {
+    margin: 0 0 8px 0;
+    color: var(--texte-secondaire);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.menu-item {
+    display: block;
+    width: 100%;
+    padding: 9px 12px;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--texte);
+    transition: all 0.2s;
+    border-radius: 7px;
+    margin-bottom: 3px;
+    font-family: inherit;
+}
+
+.menu-item:last-child { margin-bottom: 0; }
+
+.menu-item:hover {
+    background: var(--ivoire);
+    color: var(--brun);
+}
+
+/* ✅ Déconnexion stylisée en rouge dans le menu */
+.menu-section-danger {
+    background: #FFF8F8;
+}
+
+.danger-item {
+    color: var(--danger) !important;
+    font-weight: 700;
+}
+
+.danger-item:hover {
+    background: #FFF0F0 !important;
+    color: #A93226 !important;
+}
+
+/* ══════════════════════════════════════════════
+   Contenu principal
+══════════════════════════════════════════════ */
+.contenu-library {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+.barre-titre {
+    margin-bottom: 20px;
+}
+
+.barre-titre h2 {
+    font-size: 1.4rem;
+    color: var(--chocolat);
+}
+
+/* ══════════════════════════════════════════════
+   Grille de livres
+══════════════════════════════════════════════ */
+.grille-livres {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 20px;
+}
+
+.grille-livres.liste-livres {
+    grid-template-columns: 1fr;
+}
+
+.grille-livres.liste-livres .carte-livre {
+    display: flex;
+    gap: 15px;
+}
+
+.grille-livres.liste-livres .couverture {
+    min-width: 80px;
+    width: 80px;
+    height: 120px;
+}
+
+.grille-livres.liste-livres .info-livre {
+    flex: 1;
+}
+
+.grille-livres.liste-livres .actions-livre {
+    flex-direction: column;
+}
+
+/* ══════════════════════════════════════════════
+   Carte livre
+══════════════════════════════════════════════ */
+.carte-livre {
+    background: white;
+    border-radius: var(--rayon-grand);
+    overflow: hidden;
+    box-shadow: var(--ombre);
+    transition: all 0.3s;
+    cursor: pointer;
+    position: relative;
+}
+
+.carte-livre:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(62, 31, 0, 0.15);
+}
+
+.carte-livre .couverture {
+    height: 200px;
+    background: var(--gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    position: relative;
+}
+
+.carte-livre .format-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.4);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.carte-livre .favori-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.carte-livre .favori-btn:hover {
+    transform: scale(1.2);
+}
+
+.carte-livre .info-livre {
+    padding: 14px;
+}
+
+.carte-livre .titre-livre {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.92rem;
+    color: var(--chocolat);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.carte-livre .auteur-livre {
+    font-size: 0.78rem;
+    color: var(--texte-secondaire);
+    margin-bottom: 10px;
+}
+
+.carte-livre .progression-livre {
+    height: 4px;
+    background: var(--bordure);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.carte-livre .progression-livre .barre {
+    height: 100%;
+    background: var(--gradient);
+    border-radius: 2px;
+}
+
+.carte-livre .pct-progression {
+    font-size: 0.72rem;
+    color: var(--texte-secondaire);
+    margin-top: 4px;
+}
+
+.carte-livre .actions-livre {
+    display: flex;
+    border-top: 1px solid var(--bordure);
+}
+
+.carte-livre .action-btn {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    font-size: 0.78rem;
+    color: var(--texte-secondaire);
+    cursor: pointer;
+    transition: all 0.25s;
+    border-right: 1px solid var(--bordure);
+}
+
+.carte-livre .action-btn:last-child {
+    border-right: none;
+}
+
+.carte-livre .action-btn:hover {
+    background: var(--ivoire);
+    color: var(--brun);
+}
+
+/* ══════════════════════════════════════════════
+   Bibliothèque vide
+══════════════════════════════════════════════ */
+.bibliotheque-vide {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--texte-secondaire);
+}
+
+.bibliotheque-vide span {
+    font-size: 5rem;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.bibliotheque-vide p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* ══════════════════════════════════════════════
+   Menu contextuel (clic livre)
+══════════════════════════════════════════════ */
+.menu-contextuel {
+    position: fixed;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    padding: 8px 0;
+    min-width: 200px;
+    z-index: 2000;
+    display: none;
+    border: 1px solid var(--bordure);
+}
+
+.menu-contextuel.visible {
+    display: block;
+}
+
+.menu-contextuel .item-menu {
+    padding: 10px 20px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--texte);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.menu-contextuel .item-menu:hover {
+    background: var(--ivoire);
+    color: var(--brun);
+}
+
+.menu-contextuel .item-menu.danger {
+    color: var(--danger);
+}
+
+.menu-contextuel .item-menu.danger:hover {
+    background: #FFF0F0;
+}
+
+.menu-contextuel .separateur-menu {
+    height: 1px;
+    background: var(--bordure);
+    margin: 5px 0;
+}
+
+/* ══════════════════════════════════════════════
+   Responsive
+   ✅ nav-liens visibles même sur petit écran
+══════════════════════════════════════════════ */
+@media (max-width: 900px) {
+    .navbar-library .nom-utilisateur {
+        display: none;
+    }
+}
+
+@media (max-width: 680px) {
+    .navbar-library {
+        padding: 0 12px;
+        height: 56px;
+    }
+
+    .navbar-library .logo {
+        font-size: 1rem;
+    }
+
+    /* ✅ Sur mobile : labels réduits, icônes seules */
+    .navbar-library .nav-lien {
+        padding: 6px 8px;
+        font-size: 0.75rem;
+    }
+
+    .barre-recherche-container {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .barre-recherche {
+        min-width: 0;
+        font-size: 0.85rem;
+    }
+
+    .btn-ajouter-livre {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .btn-menu-hamburger {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .grille-livres {
+        grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+        gap: 12px;
+    }
+
+    .menu-hamburger {
+        right: 12px;
+        min-width: 220px;
+    }
+}
+
+@media (max-width: 420px) {
+    /* Sur très petit écran : masquer le texte des nav-liens, garder les icônes */
+    .navbar-library .nav-lien {
+        font-size: 1rem;      /* emoji seul */
+        padding: 6px;
+    }
+
+    /* Cacher le texte après l'emoji avec un trick CSS */
+    .navbar-library .nav-lien::after {
+        display: none;
+    }
+}
+
+/* Correctif affichage liste : vrai mode rangée type navbar */
+.grille-livres.liste-livres {
+    display: flex !important;
+    flex-direction: column;
+    gap: 10px;
+}
+.grille-livres.liste-livres .carte-livre {
+    display: grid !important;
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    align-items: center;
+    min-height: 78px;
+    border-radius: 12px;
+}
+.grille-livres.liste-livres .couverture {
+    width: 64px !important;
+    min-width: 64px !important;
+    height: 78px !important;
+    font-size: 1.8rem !important;
+}
+.grille-livres.liste-livres .info-livre { padding: 10px 14px; }
+.grille-livres.liste-livres .actions-livre {
+    border-top: none;
+    border-left: 1px solid var(--bordure);
+    height: 100%;
+    min-width: 160px;
+}
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}

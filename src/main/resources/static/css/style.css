@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+    --chocolat: #3E1F00;
+    --brun: #8B4513;
+    --gradient: linear-gradient(135deg, #3E1F00, #8B4513);
+    --fond: #FFFFFF;
+    --fond-secondaire: #FDF6F0;
+    --ivoire: #FFF8F3;
+    --texte: #3E1F00;
+    --texte-secondaire: #7D5A4F;
+    --bordure: #E8D5C4;
+    --succes: #6B8E23;
+    --danger: #C0392B;
+    --ombre: 0 4px 15px rgba(62, 31, 0, 0.1);
+    --ombre-forte: 0 25px 70px rgba(0, 0, 0, 0.3);
+    --rayon: 10px;
+    --rayon-grand: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--texte);
+    background: var(--fond-secondaire);
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--chocolat);
+}
+
+a {
+    color: var(--brun);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--chocolat);
+    text-decoration: underline;
+}
+
+button {
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    transition: all 0.3s;
+}
+
+input, textarea {
+    font-family: 'Lato', sans-serif;
+    outline: none;
+}
+
+.btn-principal {
+    padding: 12px 24px;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: var(--rayon);
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.btn-principal:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(62, 31, 0, 0.35);
+}
+
+.btn-secondaire {
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--brun);
+    border: 2px solid var(--brun);
+    border-radius: var(--rayon);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.btn-secondaire:hover {
+    background: var(--ivoire);
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    padding: 12px 24px;
+    background: var(--danger);
+    color: white;
+    border: none;
+    border-radius: var(--rayon);
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.message-erreur {
+    background: #FFF0F0;
+    border: 1px solid var(--danger);
+    color: var(--danger);
+    padding: 10px 15px;
+    border-radius: var(--rayon);
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.message-succes {
+    background: #F0FFF4;
+    border: 1px solid var(--succes);
+    color: var(--succes);
+    padding: 10px 15px;
+    border-radius: var(--rayon);
+    font-size: 0.875rem;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.champ-formulaire {
+    margin-bottom: 20px;
+}
+
+.champ-formulaire label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--texte);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.champ-formulaire input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid var(--bordure);
+    border-radius: var(--rayon);
+    font-size: 0.95rem;
+    color: var(--texte);
+    background: var(--ivoire);
+    transition: all 0.3s;
+}
+
+.champ-formulaire input:focus {
+    border-color: var(--brun);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}

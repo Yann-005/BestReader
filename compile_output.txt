@@ -1,0 +1,334 @@
+﻿[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< com.best_reader:best-reader >---------------------
+[INFO] Building Best_Reader 0.0.1-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.4.1:clean (default-clean) @ best-reader ---
+[INFO] Deleting C:\Users\Assouh\Desktop\Session1\DevoirBarguens\Spring_Boot\best-reader\target
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ best-reader ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 14 resources from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ best-reader ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 40 source files with javac [debug parameters release 17] to target\classes
+[INFO] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/config/SecurityConfig.java: C:\Users\Assouh\Desktop\Session1\DevoirBarguens\Spring_Boot\best-reader\src\main\java\com\best_reader\security\config\SecurityConfig.java uses or overrides a deprecated API.
+[INFO] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/config/SecurityConfig.java: Recompile with -Xlint:deprecation for details.
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[112,17] method findById(java.lang.Long) is already defined in class com.best_reader.service.BookService
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[26,19] cannot find symbol
+  symbol:   method setBook(com.best_reader.model.Book)
+  location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[27,19] cannot find symbol
+  symbol:   method setUser(com.best_reader.model.User)
+  location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[43,46] cannot find symbol
+  symbol:   method getHighlightedText()
+  location: variable updated of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[44,36] cannot find symbol
+  symbol:   method getColor()
+  location: variable updated of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[66,24] cannot find symbol
+  symbol:   method getUser()
+  location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[34,13] cannot find symbol
+  symbol:   method setTitle(java.lang.String)
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[35,13] cannot find symbol
+  symbol:   method setAuthor(java.lang.String)
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[36,13] cannot find symbol
+  symbol:   method setFilePath(java.lang.String)
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[37,24] cannot find symbol
+  symbol:   method detectFormat(java.lang.String)
+  location: class com.best_reader.service.BookService
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[38,13] cannot find symbol
+  symbol:   method getUsers()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[39,13] cannot find symbol
+  symbol:   method setUsers(java.util.HashSet<java.lang.Object>)
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[40,13] cannot find symbol
+  symbol:   method getBooks()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[41,13] cannot find symbol
+  symbol:   method setShareToken(java.lang.String)
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[70,31] cannot find symbol
+  symbol:   method isFavorite()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[79,13] cannot find symbol
+  symbol:   method getUsers()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[80,13] cannot find symbol
+  symbol:   method getBooks()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[81,17] cannot find symbol
+  symbol:   method getUsers()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[82,28] cannot find symbol
+  symbol:   method getFilePath()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[120,51] cannot find symbol
+  symbol:   method getFilePath()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[132,28] cannot find symbol
+  symbol:   method getUsers()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[26,46] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[30,54] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[35,53] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[54,37] cannot find symbol
+  symbol:   method getFullName()
+  location: variable updatedUser of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[61,55] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[64,13] cannot find symbol
+  symbol:   method setPassword(java.lang.String)
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[76,19] cannot find symbol
+  symbol:   method setUser(com.best_reader.model.User)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[77,19] cannot find symbol
+  symbol:   method setTheme(java.lang.String)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[78,19] cannot find symbol
+  symbol:   method setFontSize(int)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[32,41] cannot find symbol
+  symbol:   method getId()
+  location: variable savedUser of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[57,32] cannot find symbol
+  symbol:   method getId()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[58,31] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[59,34] cannot find symbol
+  symbol:   method getUsername()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[26,21] cannot find symbol
+  symbol:   method getEmail()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[27,21] cannot find symbol
+  symbol:   method getPassword()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[28,21] cannot find symbol
+  symbol:   method isEnabled()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[30,66] cannot find symbol
+  symbol:   method getRole()
+  location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[25,13] cannot find symbol
+  symbol:   method setUser(com.best_reader.model.User)
+  location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[28,17] cannot find symbol
+  symbol:   method setBook(com.best_reader.model.Book)
+  location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[50,34] cannot find symbol
+  symbol:   method getTitle()
+  location: variable updatedNote of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[51,36] cannot find symbol
+  symbol:   method getContent()
+  location: variable updatedNote of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[63,18] cannot find symbol
+  symbol:   method getUser()
+  location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[29,17] cannot find symbol
+  symbol:   method setBook(com.best_reader.model.Book)
+  location: variable progress of type com.best_reader.model.ReadingProgress
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[30,17] cannot find symbol
+  symbol:   method setCurrentPage(int)
+  location: variable progress of type com.best_reader.model.ReadingProgress
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[31,77] cannot find symbol
+  symbol:   method getTotalPages()
+  location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[25,19] cannot find symbol
+  symbol:   method setTheme(java.lang.String)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[35,19] cannot find symbol
+  symbol:   method setFontSize(int)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[45,19] cannot find symbol
+  symbol:   method setTheme(java.lang.String)
+  location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[46,19] cannot find symbol
+  symbol:   method setFontSize(int)
+  location: variable preference of type com.best_reader.model.UserPreference
+[INFO] 50 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  3.376 s
+[INFO] Finished at: 2026-04-20T12:59:28-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.14.1:compile (default-compile) on project best-reader: Compilation failure: Compilation failure: 
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[112,17] method findById(java.lang.Long) is already defined in class com.best_reader.service.BookService
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[26,19] cannot find symbol
+[ERROR]   symbol:   method setBook(com.best_reader.model.Book)
+[ERROR]   location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[27,19] cannot find symbol
+[ERROR]   symbol:   method setUser(com.best_reader.model.User)
+[ERROR]   location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[43,46] cannot find symbol
+[ERROR]   symbol:   method getHighlightedText()
+[ERROR]   location: variable updated of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[44,36] cannot find symbol
+[ERROR]   symbol:   method getColor()
+[ERROR]   location: variable updated of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/AnnotationService.java:[66,24] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable annotation of type com.best_reader.model.Annotation
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[34,13] cannot find symbol
+[ERROR]   symbol:   method setTitle(java.lang.String)
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[35,13] cannot find symbol
+[ERROR]   symbol:   method setAuthor(java.lang.String)
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[36,13] cannot find symbol
+[ERROR]   symbol:   method setFilePath(java.lang.String)
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[37,24] cannot find symbol
+[ERROR]   symbol:   method detectFormat(java.lang.String)
+[ERROR]   location: class com.best_reader.service.BookService
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[38,13] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[39,13] cannot find symbol
+[ERROR]   symbol:   method setUsers(java.util.HashSet<java.lang.Object>)
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[40,13] cannot find symbol
+[ERROR]   symbol:   method getBooks()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[41,13] cannot find symbol
+[ERROR]   symbol:   method setShareToken(java.lang.String)
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[70,31] cannot find symbol
+[ERROR]   symbol:   method isFavorite()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[79,13] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[80,13] cannot find symbol
+[ERROR]   symbol:   method getBooks()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[81,17] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[82,28] cannot find symbol
+[ERROR]   symbol:   method getFilePath()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[120,51] cannot find symbol
+[ERROR]   symbol:   method getFilePath()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/BookService.java:[132,28] cannot find symbol
+[ERROR]   symbol:   method getUsers()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[26,46] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[30,54] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[35,53] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[54,37] cannot find symbol
+[ERROR]   symbol:   method getFullName()
+[ERROR]   location: variable updatedUser of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[61,55] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[64,13] cannot find symbol
+[ERROR]   symbol:   method setPassword(java.lang.String)
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[76,19] cannot find symbol
+[ERROR]   symbol:   method setUser(com.best_reader.model.User)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[77,19] cannot find symbol
+[ERROR]   symbol:   method setTheme(java.lang.String)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserService.java:[78,19] cannot find symbol
+[ERROR]   symbol:   method setFontSize(int)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[32,41] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable savedUser of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[57,32] cannot find symbol
+[ERROR]   symbol:   method getId()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[58,31] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/controller/AuthController.java:[59,34] cannot find symbol
+[ERROR]   symbol:   method getUsername()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[26,21] cannot find symbol
+[ERROR]   symbol:   method getEmail()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[27,21] cannot find symbol
+[ERROR]   symbol:   method getPassword()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[28,21] cannot find symbol
+[ERROR]   symbol:   method isEnabled()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/security/service/UserDetailsServiceImpl.java:[30,66] cannot find symbol
+[ERROR]   symbol:   method getRole()
+[ERROR]   location: variable user of type com.best_reader.model.User
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[25,13] cannot find symbol
+[ERROR]   symbol:   method setUser(com.best_reader.model.User)
+[ERROR]   location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[28,17] cannot find symbol
+[ERROR]   symbol:   method setBook(com.best_reader.model.Book)
+[ERROR]   location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[50,34] cannot find symbol
+[ERROR]   symbol:   method getTitle()
+[ERROR]   location: variable updatedNote of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[51,36] cannot find symbol
+[ERROR]   symbol:   method getContent()
+[ERROR]   location: variable updatedNote of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/NoteService.java:[63,18] cannot find symbol
+[ERROR]   symbol:   method getUser()
+[ERROR]   location: variable note of type com.best_reader.model.Note
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[29,17] cannot find symbol
+[ERROR]   symbol:   method setBook(com.best_reader.model.Book)
+[ERROR]   location: variable progress of type com.best_reader.model.ReadingProgress
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[30,17] cannot find symbol
+[ERROR]   symbol:   method setCurrentPage(int)
+[ERROR]   location: variable progress of type com.best_reader.model.ReadingProgress
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/ReadingProgressService.java:[31,77] cannot find symbol
+[ERROR]   symbol:   method getTotalPages()
+[ERROR]   location: variable book of type com.best_reader.model.Book
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[25,19] cannot find symbol
+[ERROR]   symbol:   method setTheme(java.lang.String)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[35,19] cannot find symbol
+[ERROR]   symbol:   method setFontSize(int)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[45,19] cannot find symbol
+[ERROR]   symbol:   method setTheme(java.lang.String)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] /C:/Users/Assouh/Desktop/Session1/DevoirBarguens/Spring_Boot/best-reader/src/main/java/com/best_reader/service/UserPreferenceService.java:[46,19] cannot find symbol
+[ERROR]   symbol:   method setFontSize(int)
+[ERROR]   location: variable preference of type com.best_reader.model.UserPreference
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

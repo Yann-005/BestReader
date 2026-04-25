@@ -1,0 +1,122 @@
+body.auth-page {
+    background: var(--gradient);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carte-auth {
+    background: var(--fond);
+    border-radius: var(--rayon-grand);
+    padding: 50px 45px;
+    box-shadow: var(--ombre-forte);
+    width: 90%;
+    max-width: 440px;
+    margin: 20px auto;
+    box-sizing: border-box;
+}
+
+.logo-auth {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo-auth .icone {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.logo-auth h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.logo-auth p {
+    color: var(--texte-secondaire);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.btn-auth {
+    width: 100%;
+    padding: 14px;
+    background: var(--gradient);
+    color: white;
+    border: none;
+    border-radius: var(--rayon);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.btn-auth:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(62, 31, 0, 0.4);
+}
+
+.lien-auth {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--texte-secondaire);
+}
+
+.lien-auth a {
+    color: var(--brun);
+    font-weight: 700;
+}
+
+.separateur {
+    text-align: center;
+    color: var(--texte-secondaire);
+    font-size: 0.85rem;
+    margin: 15px 0;
+    position: relative;
+}
+
+.separateur::before,
+.separateur::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: var(--bordure);
+}
+
+.separateur::before { left: 0; }
+.separateur::after { right: 0; }
+
+/* Carte plus grande pour l'inscription */
+.carte-auth.inscription {
+    padding: 40px 45px;
+}
+
+/* Indicateur de force du mot de passe */
+.force-mdp {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 6px;
+    transition: all 0.3s;
+}
+
+.force-mdp.faible { background: var(--danger); width: 33%; }
+.force-mdp.moyen  { background: #F39C12; width: 66%; }
+.force-mdp.fort   { background: var(--succes); width: 100%; }
+
+.texte-force {
+    font-size: 0.75rem;
+    margin-top: 4px;
+    color: var(--texte-secondaire);
+}
+
+
+@media (max-width: 480px) {
+    .carte-auth {
+        padding: 30px 20px;
+    }
+}

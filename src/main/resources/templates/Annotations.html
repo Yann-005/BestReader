@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Reader — Mes Annotations</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/annotations.css}">
+</head>
+<body class="annotations-page">
+
+    <!-- Navbar — même structure que Notes -->
+    <nav class="navbar-annotations">
+        <div class="navbar-gauche">
+            <button class="btn-retour" onclick="retourLecteur()"> ← </button>
+            <h1>🖊️ Mes Annotations</h1>
+        </div>
+        <!-- Filtres couleur directement dans la navbar à droite -->
+        <div class="filtres-navbar">
+            <button class="filtre-btn actif" onclick="filtrerCouleur('', event)">Toutes</button>
+            <button class="filtre-btn jaune"  onclick="filtrerCouleur('YELLOW', event)"  title="Jaune"></button>
+            <button class="filtre-btn vert"   onclick="filtrerCouleur('GREEN', event)"   title="Vert"></button>
+            <button class="filtre-btn bleu"   onclick="filtrerCouleur('BLUE', event)"    title="Bleu"></button>
+            <button class="filtre-btn rose"   onclick="filtrerCouleur('PINK', event)"    title="Rose"></button>
+            <button class="filtre-btn orange" onclick="filtrerCouleur('ORANGE', event)"  title="Orange"></button>
+            <button class="filtre-btn rouge"  onclick="filtrerCouleur('RED', event)"     title="Rouge"></button>
+        </div>
+    </nav>
+
+    <!-- Contenu principal — même structure que .contenu-notes -->
+    <div class="contenu-annotations">
+
+        <!-- Compteur résumé -->
+        <div class="resume-annotations" id="resumeAnnotations">
+            <span id="compteurAnnotations">0 annotation</span>
+        </div>
+
+        <!-- Liste des annotations -->
+        <div class="liste-annotations" id="listeAnnotations">
+            <!-- Les cartes seront injectées ici par JS -->
+        </div>
+
+        <!-- État vide — même style que .aucune-note -->
+        <div class="aucune-annotation" id="aucuneAnnotation" style="display:none;">
+            <span>🖊️</span>
+            <p>Vous n'avez pas encore d'annotations.</p>
+            <p class="sous-texte">Sélectionnez du texte pendant la lecture pour créer des annotations colorées.</p>
+            <button class="btn-principal" onclick="window.location.href='/Library'">
+                📚 Aller à ma bibliothèque
+            </button>
+        </div>
+
+    </div>
+
+    <script th:src="@{/js/annotations.js}"></script>
+    <script>
+        // Bouton retour : retourne au lecteur du livre si bookId présent dans l'URL,
+        // sinon retourne à la bibliothèque.
+        function retourLecteur() {
+            const params = new URLSearchParams(window.location.search);
+            const bookId = params.get('bookId');
+            if (bookId) {
+                window.location.href = '/Reader/' + bookId;
+            } else {
+                history.back();
+            }
+        }
+    </script>
+</body>
+</html>
