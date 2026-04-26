@@ -80,13 +80,14 @@
           <artifactId>pdfbox</artifactId>
           <version>3.0.1</version>
         </dependency>
-
+ 
+      
 		<!-- PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
-		</dependency>
+		</dependency>  
 
 		<!-- Lombok -->
 		<dependency>

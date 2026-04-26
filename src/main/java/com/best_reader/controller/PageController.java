@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class PageController {
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/auth/Login";
+    }
+
     @GetMapping("/auth/Login")
     public String login() {
         return "auth/Login";
