@@ -27,9 +27,16 @@ public class AuthController {
     @PostMapping("/Register")
     public ResponseEntity<Map<String, Object>> register(@Valid @RequestBody User user) {
         User savedUser = userService.register(user);
+        
+        // Générer un token JWT après l'inscription
+        String token = jwtUtil.generateToken(savedUser.getUsername());
+        
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Inscription réussie");
         response.put("userId", savedUser.getId());
+        response.put("token", token);
+        response.put("username", savedUser.getUsername());
+        response.put("email", savedUser.getEmail());
         return ResponseEntity.ok(response);
     }
 
