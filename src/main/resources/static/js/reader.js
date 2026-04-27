@@ -708,7 +708,6 @@ function configurerNavigationParClicPage() {
     const zone = contenuLecture();
     if (!zone) return;
     zone.addEventListener('click', async (e) => {
-        if (!['TXT', 'WORD'].includes(formatActuel)) return;
         if (e.target.closest('button, a, input, textarea, select, .menu-selection, .popup-dictionnaire, #menuDeroulant, #parametresPanel')) return;
         const selection = window.getSelection();
         if (selection && String(selection).trim()) return;
