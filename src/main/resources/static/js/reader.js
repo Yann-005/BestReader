@@ -463,11 +463,73 @@ async function chargerAnnotations() {
     } catch (_) { annotations = []; }
 }
 function configurerSelectionTexte() {
-    pageDocument().addEventListener('mouseup', () => {
-        const texte = window.getSelection().toString().trim();
-        if (texte) afficherMenuSelection(texte);
+    const el = pageDocument();
+
+    // ── Desktop : sélection souris ──────────────────────────
+    el.addEventListener('mouseup', () => {
+        setTimeout(() => {
+            const texte = window.getSelection().toString().trim();
+            if (texte.length > 0) afficherMenuSelection(texte);
+        }, 50);
+    });
+
+    // ── Mobile : appui long sur un mot ──────────────────────
+    let timerLongPress = null;
+    let touchStartX = 0, touchStartY = 0;
+    let longPressDeclanche = false;
+
+    el.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        longPressDeclanche = false;
+
+        timerLongPress = setTimeout(() => {
+            longPressDeclanche = true;
+
+            const touch = e.touches[0];
+
+            // Extraire le mot à la position du doigt
+            const range = document.caretRangeFromPoint
+                ? document.caretRangeFromPoint(touch.clientX, touch.clientY)
+                : null;
+
+            if (!range) return;
+            range.expand('word');
+
+            // Sélection visuelle native
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+
+            const mot = range.toString().trim().replace(/[^a-zA-ZÀ-ÿ\-]/g, '');
+            if (mot.length > 1) {
+                
+                if (navigator.vibrate) navigator.vibrate(40);
+                afficherMenuSelection(mot);
+            }
+        }, 500); 
+    }, { passive: true });
+
+    el.addEventListener('touchmove', (e) => {
+        // Annuler si le doigt bouge (c'est un scroll)
+        const dx = Math.abs(e.touches[0].clientX - touchStartX);
+        const dy = Math.abs(e.touches[0].clientY - touchStartY);
+        if (dx > 8 || dy > 8) {
+            clearTimeout(timerLongPress);
+        }
+    }, { passive: true });
+
+    el.addEventListener('touchend', (e) => {
+        clearTimeout(timerLongPress);
+
+        // Si appui long déclenché → bloquer la navigation de page
+        if (longPressDeclanche) {
+            e.stopPropagation();
+            longPressDeclanche = false;
+        }
     });
 }
+
 function afficherMenuSelection(texte) {
     fermerMenuSelection(false);
     const div = document.createElement('div');

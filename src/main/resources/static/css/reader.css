@@ -486,9 +486,11 @@ body.reader-page {
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.22);
     padding: 24px 26px;
-    width: min(380px, calc(100vw - 24px));  /* ne dépasse jamais sur mobile */
+    width: min(380px, calc(100vw - 24px));  
     z-index: 1002;
     display: none;
+    max-height:80dvh;
+    overflow-y:auto;
 }
 
 .popup-dictionnaire.visible {
@@ -595,6 +597,8 @@ body.reader-page {
     z-index: 1001;
     text-align: center;
     width: min(300px, calc(100vw - 24px));
+    max-height:80dvh;
+    overflow-y:auto;
 }
 
 .menu-selection-title  { margin-bottom: 10px; font-weight: bold; color: #3E1F00; font-size: 0.95rem; }

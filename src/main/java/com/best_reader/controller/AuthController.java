@@ -29,7 +29,7 @@ public class AuthController {
         User savedUser = userService.register(user);
         
         // Générer un token JWT après l'inscription
-        String token = jwtUtil.generateToken(savedUser.getUsername());
+        String token = jwtUtil.generateToken(savedUser.getEmail());
         
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Inscription réussie");
