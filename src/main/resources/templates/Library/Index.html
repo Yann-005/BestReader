@@ -173,18 +173,7 @@
                 menuHamb.classList.remove('visible');
             }
         });
-
-        // ── Sync texte du bouton de disposition ──
-        const _basculerOriginal = basculerDisposition;
-        async function basculerDisposition() {
-            await _basculerOriginal();
-            const txt = document.getElementById('textDisposition');
-            if (txt) {
-                txt.textContent = dispositionActuelle === 'grille'
-                    ? '📋 Passer en liste'
-                    : '⊞ Passer en grille';
-            }
-        }
+        
     </script>
 </body>
 </html>

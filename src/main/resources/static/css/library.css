@@ -279,28 +279,7 @@ body.library-page {
     gap: 20px;
 }
 
-.grille-livres.liste-livres {
-    grid-template-columns: 1fr;
-}
 
-.grille-livres.liste-livres .carte-livre {
-    display: flex;
-    gap: 15px;
-}
-
-.grille-livres.liste-livres .couverture {
-    min-width: 80px;
-    width: 80px;
-    height: 120px;
-}
-
-.grille-livres.liste-livres .info-livre {
-    flex: 1;
-}
-
-.grille-livres.liste-livres .actions-livre {
-    flex-direction: column;
-}
 
 /* ══════════════════════════════════════════════
    Carte livre

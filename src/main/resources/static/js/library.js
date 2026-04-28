@@ -94,10 +94,9 @@ function afficherLivres(livres) {
 
      if (dispositionActuelle === 'liste') {
         grille.classList.add('liste-livres');
-        grille.classList.remove('grille-livres');
+        
     } else {
         grille.classList.remove('liste-livres');
-        grille.classList.add('grille-livres');
     }
 
     if (livres.length === 0) {
@@ -295,12 +294,13 @@ function trierPar(tri) {
 // ==============================
 async function basculerDisposition() {
     dispositionActuelle = dispositionActuelle === 'grille' ? 'liste' : 'grille';
-    
-    const btn = document.getElementById('btnDisposition');
-    if (btn) btn.textContent = dispositionActuelle === 'grille' ? '📋 Liste' : '⊞ Grille';
-    
+
+    const txt = document.getElementById('textDisposition');
+    if (txt) txt.textContent = dispositionActuelle === 'grille'
+        ? '⊞ Passer en liste'
+        : '📋 Passer en grille';
+
     localStorage.setItem('dispositionLivres', dispositionActuelle);
-    
     await chargerLivres();
 }
 
