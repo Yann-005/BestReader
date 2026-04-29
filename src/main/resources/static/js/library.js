@@ -178,44 +178,47 @@ async function toggleFavori() {
     document.getElementById('menuContextuel').classList.remove('visible');
 }
 
+
+function afficherToast(msg, duree = 3000) {
+    const toast = document.getElementById('uploadToast');
+    const texte = document.getElementById('uploadToastMsg');
+    if (!toast || !texte) return;
+    texte.textContent = msg;
+    toast.style.display = 'block';
+    clearTimeout(toast._timer);
+    toast._timer = setTimeout(() => { toast.style.display = 'none'; }, duree);
+}
+
+
 // ==============================
 // Uploader un livre
 // ==============================
 async function uploaderLivre(event) {
     const fichier = event.target.files[0];
     if (!fichier) return;
-
+    afficherToast('⏳ Upload en cours...', 30000);
     const formData = new FormData();
     formData.append('file', fichier);
     formData.append('title', fichier.name.replace(/\.[^/.]+$/, ''));
     formData.append('author', '');
     formData.append('userId', userId);
-
     try {
         const reponse = await fetch('/api/books/upload', {
             method: 'POST',
             headers: { 'Authorization': `Bearer ${token}` },
             body: formData
         });
-
         if (reponse.ok) {
+            afficherToast('✅ Livre ajouté !');
             await chargerLivres();
+        } else {
+            afficherToast('❌ Échec upload');
         }
     } catch (erreur) {
+        afficherToast('❌ Erreur réseau');
         console.error('Erreur upload:', erreur);
     }
 }
-
-
-async function afficherAnnotations(page) {
-    const res = await fetch(`/api/annotations/book/${livreSelectionne}/user/${userId}`);
-    const annotations = await res.json();
-    
-    annotations
-        .filter(a => a.pageNumber === page)
-        .forEach(a => dessinerAnnotation(a));
-}
-
 
 
 // ==============================

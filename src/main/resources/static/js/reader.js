@@ -25,6 +25,19 @@ const pageDocument = () => document.getElementById('pageDocument');
 const contenuLecture = () => document.getElementById('contenuLecture');
 const fileUrl = () => `/api/books/${bookId}/file`;
 
+// ── Overlay de chargement ────────────────────────────────────
+function afficherChargement(msg) {
+    const el = document.getElementById('loadingMessage');
+    if (el) el.textContent = msg || 'Chargement…';
+    const overlay = document.getElementById('loadingOverlay');
+    if (overlay) overlay.style.display = 'flex';
+}
+
+function cacherChargement() {
+    const overlay = document.getElementById('loadingOverlay');
+    if (overlay) overlay.style.display = 'none';
+}
+
 function headersAuth(extra = {}) {
     return token ? { ...extra, Authorization: `Bearer ${token}` } : extra;
 }
@@ -35,13 +48,19 @@ async function fetchAvecAuth(url, options = {}) {
 document.addEventListener('DOMContentLoaded', async () => {
     chargerDictionnaireLocal();
     appliquerBoutonsPreferences();
-    await chargerLivre();
-    await chargerPreferencesServeur();
-    await chargerProgression();
-    await chargerContenu();
-    configurerSelectionTexte();
-    configurerFermetureMenus();
-    configurerNavigationParClicPage();
+    afficherChargement('Chargement du document...');
+    try {
+        await chargerLivre();
+        await chargerPreferencesServeur();
+        await chargerProgression();
+        await chargerContenu();
+        configurerSelectionTexte();
+        configurerFermetureMenus();
+        configurerNavigationParClicPage();
+    } catch (e) {
+        cacherChargement();
+        console.error('Erreur initialisation:', e);
+    }
 });
 
 async function chargerLivre() {
@@ -60,11 +79,15 @@ async function chargerContenu() {
     el.style.fontSize = `${taillePolice}px`;
     contenuLecture().scrollTop = 0;
 
+try{
     if (formatActuel === 'PDF') await chargerPDF();
     else if (formatActuel === 'WORD') await chargerDOCX();
     else if (formatActuel === 'EPUB') await chargerEPUB();
     else if (formatActuel === 'TXT') await chargerTXT();
     else el.textContent = 'Format non supporté.';
+} finally {
+        cacherChargement();
+    }
 
     await chargerAnnotations();
     appliquerAnnotations();

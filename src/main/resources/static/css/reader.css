@@ -798,3 +798,8 @@ body.theme-sepia .flow-reader-page {
     --reader-page-bg: #f4ecd8;
     --reader-text-color: #3e1f00;
 }
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
