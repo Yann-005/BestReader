@@ -40,12 +40,13 @@ public class DictionaryService {
         DictionaryWord offline = findOffline(cleanWord, cleanLanguage);
         if (offline != null) return saveOfflineSafe(offline);
 
-        DictionaryWord online = fetchFromFreeDictionary(cleanWord, cleanLanguage);
-        if (hasRealDefinition(online)) return saveOfflineSafe(online);
-
         if ("fr".equals(cleanLanguage)) {
-            DictionaryWord wiktionary = fetchFromWiktionaryFr(cleanWord);
-            if (hasRealDefinition(wiktionary)) return saveOfflineSafe(wiktionary);
+    DictionaryWord wiktionary = fetchFromWiktionaryFr(cleanWord);
+    if (hasRealDefinition(wiktionary)) return saveOfflineSafe(wiktionary);
+    
+        } else {
+    DictionaryWord online = fetchFromFreeDictionary(cleanWord, cleanLanguage);
+    if (hasRealDefinition(online)) return saveOfflineSafe(online);
         }
 
         if ("en".equals(cleanLanguage)) {
